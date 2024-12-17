@@ -82,7 +82,6 @@ const Instructions = ({
                         alt='arrow'
                         className='w-full' />
                 </button>
-                <button onClick={() => localStorage.removeItem('user')} className='text-white text-lg w-full text-center font-black mt-2'>Volver a inicio</button>
             </motion.div>
         </div>
     )
