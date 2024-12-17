@@ -22,21 +22,12 @@ const Instructions = ({
                                 className='text-white/90 text-4xl text-left mb-10 font-semibold'>
                                 Rompe la piñata digital de <span className='font-black text-white'>BTC. </span><span className='font-bold text-white'>Agita tu celular para acumular la mayor cantidad de puntos posibles en 90 segundos</span> y romper la piñata. ¡Mucha suerte!
                             </motion.p>
-                            <motion.button
+                            <button
                                 key={`button-instructions`}
                                 onClick={() => { setInstructions(false); setActivity(true) }}
-                                animate={{
-                                    scale: [1, 1.1, 1],
-                                }}
-                                transition={{
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    duration: 1.8,
-                                    ease: 'easeInOut'
-                                }}
                                 className='w-full h-auto' type='submit'>
                                 <img src='/start.png' alt='arrow' className='w-full inline-block max-w-xl' />
-                            </motion.button>
+                            </button>
                         </div>
                         <div className='flex flex-1 flex-col justify-center items-center w-full h-full z-20 gap-10'>
                             <motion.img

@@ -28,7 +28,7 @@ const Instructions = ({
                 }}
                 className='text-white text-lg w-full font-semibold'
             >
-                ¡Ahora deberás romper la piñata! para ello, <span className='font-black text-xl'>agita tu celular para acumular la mayor cantidad de puntos posibles</span> y romper la piñata.
+                ¡Ahora deberás romper la piñata! Para ello, <span className='font-black text-xl'>agita tu celular para acumular la mayor cantidad de puntos posibles</span> y romper la piñata.
             </motion.p>
             <motion.div
                 animate={{
