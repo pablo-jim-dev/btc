@@ -46,9 +46,8 @@ const Activity = ({ setBackground }) => {
     const handleResults = async () => {
         try {
             setLoading(true);
-            const sandbox = mode !== 'development';
-            console.log(sandbox);
-            const response = await results(sandbox);
+            // const sandbox = mode !== 'development';
+            const response = await results(false);
             setResultsData(response.data.data);
             console.log(response);
             setLoading(false);
