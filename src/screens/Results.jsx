@@ -54,9 +54,9 @@ const Results = () => {
                             setBackground={setBackground}
                             setResults={setActivity}
                             setInitial={setInitial}
-                            setInstructions={setInstructions} 
+                            setInstructions={setInstructions}
                             setActivity={setActivity}
-                            />
+                        />
                     </motion.div>
                 }
             </AnimatePresence>

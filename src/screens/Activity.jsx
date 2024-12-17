@@ -136,7 +136,7 @@ const Activity = () => {
             try {
                 event.preventDefault();
                 event.stopPropagation();
-    
+
                 setCount((prevCount) => {
                     const increment = Math.abs(
                         (event.acceleration.x || 0) +
@@ -150,7 +150,7 @@ const Activity = () => {
                 toast.error("Ha ocurrido un problema con los sensores.");
             }
         };
-    
+
         motionHandlerRef.current = motionHandler;
         window.addEventListener('devicemotion', motionHandler, { passive: false });
     };
@@ -159,6 +159,11 @@ const Activity = () => {
         try {
             setLoading(true);
             event.preventDefault();
+            if (count <= 0) {
+                toast.error('Debes obtener al menos 1 punto para poder continuar.');
+                setLoading(false);
+                return;
+            }
             const user = JSON.parse(localStorage.getItem('user'));
             const data = {
                 ...user,
@@ -170,6 +175,7 @@ const Activity = () => {
             console.log(res);
             setLoading(false);
             navigate('/wait');
+            toast.success('Registro realizado con éxito.');
             // Enviar datos a la API
         } catch (error) {
             setLoading(false);
