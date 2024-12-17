@@ -31,7 +31,6 @@ const Home = () => {
     try {
       await validateLogin(user);
       localStorage.setItem('user', JSON.stringify(user));
-      document.activeElement.blur();
       // navigate('/activity');
       window.location.reload();
     } catch (error) {
@@ -63,7 +62,7 @@ const Home = () => {
             delay: 1.4
           }}
           src='/welcome-2.png' alt='logo' className='h-auto w-full max-w-md -mt-10' />
-        <div className='flex flex-col w-full max-w-md my-2'>
+        <div className='flex flex-col w-full max-w-md my-2 z-40'>
           <motion.form
             animate={{
               scale: [0, 1],

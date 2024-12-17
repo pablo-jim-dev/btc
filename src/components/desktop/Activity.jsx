@@ -161,7 +161,7 @@ const Activity = ({ setBackground }) => {
                                 ease: 'circInOut',
                                 // delay: 10
                             }}
-                            className='fixed bottom-0 left-0 right-0 w-full h-auto'>
+                            className='fixed bottom-0 left-0 right-0 w-full h-auto z-50'>
                             <motion.button
                                 key={`button-instructions`}
                                 onClick={() => { handleResults() }}

@@ -111,32 +111,48 @@ const Activity = () => {
 
     const grantPermissions = async () => {
         try {
-            const response = await DeviceMotionEvent.requestPermission();
-            if (response === 'granted') {
-                setGranted(true);
-                setBackground(false);
-                const motionHandler = (event) => {
-                    event.preventDefault()
-                    event.stopPropagation();
-                    setCount((prevCount) => {
-                        const increment = Math.abs(
-                            event.acceleration.x +
-                            event.acceleration.y +
-                            event.acceleration.z
-                        );
-                        return Math.round(prevCount + increment / 30);
-                    });
-                };
-
-                motionHandlerRef.current = motionHandler;
-
-                window.addEventListener('devicemotion', motionHandler, { passive: false });
+            if (typeof DeviceMotionEvent.requestPermission === 'function') {
+                // Dispositivo que requiere solicitud de permisos explícitos (iOS)
+                const response = await DeviceMotionEvent.requestPermission();
+                if (response === 'granted') {
+                    enableMotionHandler();
+                } else {
+                    toast.error('Permiso denegado. No puedes participar en la actividad sin conceder acceso a los sensores.');
+                }
             } else {
-                toast.error('Para poder participar en la actividad, necesitas conceder permiso a los sensores de tu dispositivo.');
+                // Dispositivo que no requiere permisos explícitos (Android, otros)
+                enableMotionHandler();
             }
-        } catch (err) {
-            console.error(err);
+        } catch (error) {
+            console.error("Error al intentar acceder a los sensores:", error);
+            toast.error('Ocurrió un error al intentar acceder a los sensores. Por favor, revisa los permisos de tu navegador o dispositivo.');
         }
+    };
+
+    const enableMotionHandler = () => {
+        setGranted(true);
+        setBackground(false);
+        const motionHandler = (event) => {
+            try {
+                event.preventDefault();
+                event.stopPropagation();
+    
+                setCount((prevCount) => {
+                    const increment = Math.abs(
+                        (event.acceleration.x || 0) +
+                        (event.acceleration.y || 0) +
+                        (event.acceleration.z || 0)
+                    );
+                    return Math.round(prevCount + increment / 30);
+                });
+            } catch (error) {
+                console.error("Error en el controlador de movimiento:", error);
+                toast.error("Ha ocurrido un problema con los sensores.");
+            }
+        };
+    
+        motionHandlerRef.current = motionHandler;
+        window.addEventListener('devicemotion', motionHandler, { passive: false });
     };
 
     const handleSubmit = async (event) => {

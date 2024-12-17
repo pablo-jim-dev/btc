@@ -38,7 +38,7 @@ const Instructions = ({
                                 <img src='/start.png' alt='arrow' className='w-full inline-block max-w-xl' />
                             </motion.button>
                         </div>
-                        <div className='flex flex-1 flex-col justify-center items-center w-full h-full z-20'>
+                        <div className='flex flex-1 flex-col justify-center items-center w-full h-full z-20 gap-10'>
                             <motion.img
                                 animate={{
                                     scale: [0, 1],
@@ -61,9 +61,9 @@ const Instructions = ({
                                     ease: 'circInOut',
                                     delay: 1.2
                                 }}
-                                src='/pinata.png'
+                                src='/desktop/qr.png'
                                 alt='logo'
-                                className='h-auto w-full max-w-4xl'
+                                className='h-auto w-full max-w-xl'
                             />
                         </div>
                     </div>
