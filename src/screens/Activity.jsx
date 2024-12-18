@@ -169,8 +169,8 @@ const Activity = () => {
                 ...user,
                 count: count,
                 // mode: mode === 'development' ? false : true
-                mode: false,
-                id: 1
+                mode: true,
+                eventId: 1
             };
             const res = await register(data);
             console.log(res);
