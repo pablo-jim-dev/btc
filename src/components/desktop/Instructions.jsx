@@ -20,7 +20,7 @@ const Instructions = ({
                                     delay: 0.5
                                 }}
                                 className='text-white/90 text-4xl text-left mb-10 font-semibold'>
-                                Rompe la piñata digital de <span className='font-black text-white'>BTC. </span><span className='font-bold text-white'>Agita tu celular para acumular la mayor cantidad de puntos posibles en 90 segundos</span> y romper la piñata. ¡Mucha suerte!
+                                Rompe la piñata digital de <span className='font-black text-white'>AmasB. </span><span className='font-bold text-white'>Agita tu celular para acumular la mayor cantidad de puntos posibles en 90 segundos</span> y romper la piñata. ¡Mucha suerte!
                             </motion.p>
                             <button
                                 key={`button-instructions`}
