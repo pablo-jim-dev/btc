@@ -168,8 +168,8 @@ const Activity = () => {
             const data = {
                 ...user,
                 count: count,
-                mode: 1,
-                eventId: 1
+                mode: 0,
+                eventId: 2
             };
             const res = await register(data);
             console.log(res);
