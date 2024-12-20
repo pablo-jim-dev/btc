@@ -12,7 +12,6 @@ import { style } from "framer-motion/client";
 function App() {
   return (
     <BrowserRouter>
-      <Header />
       <Routes>
         <Route element={<Background />}>
           <Route path="/" element={<Home />} />

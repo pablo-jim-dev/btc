@@ -11,7 +11,7 @@ import { register } from '../api/endpoints';
 const Activity = () => {
     const [count, setCount] = useState(0);
     const [granted, setGranted] = useState(false);
-    const { setBackground } = useOutletContext();
+    const { setBackground, setLogo } = useOutletContext();
     const controls = useAnimationControls();
     const [exploding, setExploding] = useState(false);
     const inactivityTimer = useRef(null);
@@ -29,6 +29,7 @@ const Activity = () => {
         if (!user) navigate('/');
         return () => {
             setBackground(true);
+            setLogo(true);
             setGranted(false);
             setCount(0);
             setTimeLeft(90);
@@ -132,6 +133,7 @@ const Activity = () => {
     const enableMotionHandler = () => {
         setGranted(true);
         setBackground(false);
+        setLogo(false);
         const motionHandler = (event) => {
             try {
                 event.preventDefault();
@@ -216,7 +218,7 @@ const Activity = () => {
             {granted && !finished && (
                 <>
                     <div className='flex flex-col justify-center items-center w-full h-full z-20'>
-                        <div className='absolute top-28 left-0 right-0 w-full flex flex-col justify-center items-center text-center z-30'>
+                        <div className='absolute top-20 left-0 right-0 w-full flex flex-col justify-center items-center text-center z-30'>
                             <p className='text-white text-base uppercase font-black'>Tiempo restante: </p>
                             <h2 className='text-white text-3xl'>{timeLeft}</h2>
                         </div>
@@ -295,7 +297,7 @@ const Activity = () => {
                                 ease: 'circInOut',
                                 delay: 1.2
                             }}
-                            className='relative w-full h-auto pointer-events-none text-center mt-6'
+                            className='relative w-full h-auto pointer-events-none text-center'
                         >
                             <h2 className='text-white text-lg'>Puntuación</h2>
                             <p className='text-white text-8xl'>{count}</p>

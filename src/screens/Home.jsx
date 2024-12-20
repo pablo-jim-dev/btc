@@ -8,10 +8,11 @@ import { useOutletContext } from 'react-router'
 const Home = () => {
   const formRef = useRef(null)
   const navigate = useNavigate()
-  const { setBackground } = useOutletContext()
+  const { setBackground, setLogo } = useOutletContext()
 
   useEffect(() => {
     setBackground(true)
+    setLogo(true)
     const user = JSON.parse(localStorage.getItem('user'))
     if (user) navigate('/activity')
 

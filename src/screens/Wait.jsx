@@ -5,10 +5,11 @@ import { useOutletContext } from 'react-router'
 
 const Wait = () => {
     const navigate = useNavigate()
-    const { setBackground } = useOutletContext()
+    const { setBackground, setLogo } = useOutletContext()
 
     useEffect(() => {
         setBackground(false)
+        setLogo(true)
         const user = JSON.parse(localStorage.getItem('user'))
         if (!user) navigate('/')
     }, []);

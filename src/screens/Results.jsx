@@ -6,12 +6,13 @@ import Activity from '../components/desktop/Activity';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const Results = () => {
-    const { setBackground } = useOutletContext();
+    const { setBackground, setLogo } = useOutletContext();
     const [initial, setInitial] = useState(true)
     const [instructions, setInstructions] = useState(false)
     const [activity, setActivity] = useState(false)
     useEffect(() => {
         setBackground(true)
+        setLogo(true)
         return () => {
             setInitial(true)
             setInstructions(false)
