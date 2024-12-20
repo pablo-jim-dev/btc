@@ -295,7 +295,7 @@ const Activity = () => {
                                 ease: 'circInOut',
                                 delay: 1.2
                             }}
-                            className='relative w-full h-auto pointer-events-none text-center'
+                            className='relative w-full h-auto pointer-events-none text-center mt-6'
                         >
                             <h2 className='text-white text-lg'>Puntuación</h2>
                             <p className='text-white text-8xl'>{count}</p>
