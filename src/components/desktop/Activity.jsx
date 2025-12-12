@@ -141,7 +141,7 @@ const Activity = ({ setBackground }) => {
                                                 }}
                                                 className='flex flex-row justify-between items-center w-full h-auto border-b-1 border-b-white/30 mb-10 text-xl'
                                             >
-                                                <p className='text-white/90 font-semibold text-left flex-[2]'>{result.name} {result.lastName}</p>
+                                                <p className='text-white/90 font-semibold text-left flex-[2]'>{result.name} {result.lastname}</p>
                                                 <p className='text-white/90 font-semibold text-right flex-[4]'>{result.awardName}</p>
                                             </motion.div>
                                         ))}

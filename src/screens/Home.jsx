@@ -25,7 +25,7 @@ const Home = () => {
     const formData = new FormData(formRef.current)
     const user = {
       name: formData.get('name'),
-      lastName: formData.get('lastName'),
+      lastname: formData.get('lastname'),
       email: formData.get('email')
     }
     try {
@@ -78,7 +78,7 @@ const Home = () => {
           >
             <p className='text-white text-lg font-semibold'>Registra tus datos para participar por alguno de los premios que <span className='font-black'>BTC</span> tiene para ti.</p>
             <input name='name' type='text' placeholder='Nombre' className='w-full h-12 bg-white text-black text-lg mt-4 px-4 border-3 border-yellow-400' />
-            <input name='lastName' type='text' placeholder='Apellidos' className='w-full h-12 bg-white text-black text-lg mt-4 px-4 border-3 border-yellow-400' />
+            <input name='lastname' type='text' placeholder='Apellidos' className='w-full h-12 bg-white text-black text-lg mt-4 px-4 border-3 border-yellow-400' />
             <input name='email' type='email' placeholder='Correo Electrónico' className='w-full h-12 bg-white text-black text-lg mt-4 px-4 border-3 border-yellow-400' />
             <motion.button
               animate={{

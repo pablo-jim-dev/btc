@@ -167,7 +167,7 @@ const Activity = () => {
             const user = JSON.parse(localStorage.getItem('user'));
             const data = {
                 ...user,
-                count: count,
+                score: count,
                 mode: 1,
                 eventId: 1
             };
