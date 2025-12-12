@@ -46,10 +46,9 @@ const Activity = ({ setBackground }) => {
     const handleResults = async () => {
         try {
             setLoading(true);
-            // const sandbox = mode !== 'development';
             const response = await results(1, 1);
-            setResultsData(response.data.data);
-            console.log(response);
+            setResultsData(response.data.users);
+            console.log(response.data.users);
             setLoading(false);
         } catch (error) {
             setLoading(false);
@@ -142,7 +141,7 @@ const Activity = ({ setBackground }) => {
                                                 className='flex flex-row justify-between items-center w-full h-auto border-b-1 border-b-white/30 mb-10 text-xl'
                                             >
                                                 <p className='text-white/90 font-semibold text-left flex-[2]'>{result.name} {result.lastname}</p>
-                                                <p className='text-white/90 font-semibold text-right flex-[4]'>{result.awardName}</p>
+                                                <p className='text-white/90 font-semibold text-right flex-[4]'>{result.score}</p>
                                             </motion.div>
                                         ))}
                                     </div>
