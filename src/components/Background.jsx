@@ -25,7 +25,7 @@ const Background = () => {
           ease: [0.42, 0, 0.58, 1]
         }}
         className='fixed w-[1200px] z-10'>
-        <img src='/pinata.png' alt='pinata' className='w-[900px]' />
+        <img src='/pinata.png' alt='pinata' className='w-[500px]' />
       </motion.div>
       <Outlet
         context={{

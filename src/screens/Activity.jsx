@@ -257,7 +257,7 @@ const Activity = () => {
                             duration: 1.2,
                             ease: 'circInOut',
                         }}
-                        className='absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-t from-yellow-400/60 via-transparent to-transparent z-10' />
+                        className='absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-t from-purple-400/60 via-transparent to-transparent z-10' />
                 </>
             )}
             {finished && timeLeft === 0 && (

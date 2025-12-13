@@ -5,3 +5,12 @@
 h1, h2, h3, p {
     font-family: 'Montserrat', sans-serif;
 }
+
+@font-face {
+    font-family: Nudely_Regular;
+    src: url(/fonts/Nudely_Regular.otf);
+}
+
+p {
+    font-family: Nudely_Regular;
+}

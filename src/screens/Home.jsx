@@ -61,7 +61,7 @@ const Home = () => {
             ease: 'circInOut',
             delay: 1.4
           }}
-          src='/welcome-2.png' alt='logo' className='h-auto w-full max-w-md -mt-10' />
+          src='/welcome-2.png' alt='logo' className='h-auto w-2/3 max-w-md' />
         <div className='flex flex-col w-full max-w-md my-2 z-40'>
           <motion.form
             animate={{
@@ -74,15 +74,15 @@ const Home = () => {
             }}
             ref={formRef}
             onSubmit={handleSubmit}
-            className='flex flex-col w-full'
+            className='flex flex-col w-full gap-2'
           >
-            <p className='text-white text-lg font-semibold'>Registra tus datos para participar por alguno de los premios que <span className='font-black'>BTC</span> tiene para ti.</p>
-            <input name='name' type='text' placeholder='Nombre' className='w-full h-12 bg-white text-black text-lg mt-4 px-4 border-3 border-yellow-400' />
-            <input name='lastname' type='text' placeholder='Apellidos' className='w-full h-12 bg-white text-black text-lg mt-4 px-4 border-3 border-yellow-400' />
-            <input name='email' type='email' placeholder='Correo Electrónico' className='w-full h-12 bg-white text-black text-lg mt-4 px-4 border-3 border-yellow-400' />
+            <p className='text-white text-base font-semibold text-center'>Registra tus datos para participar por alguno de los premios que <span className='font-black'>BTC</span> tiene para ti.</p>
+            <input name='name' type='text' placeholder='Nombre' className='w-full h-12 bg-white text-black text-lg mt-4 px-4 border-3 border-purple-400' />
+            <input name='lastname' type='text' placeholder='Apellidos' className='w-full h-12 bg-white text-black text-lg mt-4 px-4 border-3 border-purple-400' />
+            <input name='email' type='email' placeholder='Correo Electrónico' className='w-full h-12 bg-white text-black text-lg mt-4 px-4 border-3 border-purple-400' />
             <motion.button
               animate={{
-                scale: [1, 1.1, 1],
+                scale: [1, 1.05, 1],
               }}
               transition={{
                 repeat: Infinity,
