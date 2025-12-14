@@ -23,7 +23,7 @@ function App() {
       </Routes>
       <Toaster
         duration={8000}
-        position="top"
+        position="top-center"
         toastOptions={{
           style: {
             fontSize: "20px",

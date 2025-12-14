@@ -19,7 +19,7 @@ const Wait = () => {
     }
     return (
         <div className='container mx-auto px-4 relative h-svh w-full flex flex-col justify-center items-center z-20'>
-            <div className='absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-transparent via-amber-400/45 to-transparent z-10' />
+            <div className='absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-transparent via-purple-400/45 to-transparent z-10' />
             <div className='flex flex-col justify-center items-center w-full h-full z-20 max-w-md'>
                 <motion.img
                     animate={{

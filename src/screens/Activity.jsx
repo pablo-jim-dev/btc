@@ -7,22 +7,22 @@ import Alert from '../components/Alert';
 import { useNavigate } from 'react-router';
 import { toast } from 'sonner';
 import { register } from '../api/endpoints';
+const mode = import.meta.env.MODE === 'development' ? 0 : 1;
 
 const Activity = () => {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(200);
     const [granted, setGranted] = useState(false);
     const { setBackground } = useOutletContext();
     const controls = useAnimationControls();
     const [exploding, setExploding] = useState(false);
     const inactivityTimer = useRef(null);
-    const [timeLeft, setTimeLeft] = useState(90);
+    const [timeLeft, setTimeLeft] = useState(10);
     const [finished, setFinished] = useState(false);
     const lastMultipleRef = useRef(0);
     const motionHandlerRef = useRef(null);
     const [loading, setLoading] = useState(false);
     const [alert, setAlert] = useState(false);
     const navigate = useNavigate();
-    const mode = import.meta.env.MODE;
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'))
@@ -30,8 +30,8 @@ const Activity = () => {
         return () => {
             setBackground(true);
             setGranted(false);
-            setCount(0);
-            setTimeLeft(90);
+            setCount(200);
+            setTimeLeft(10);
             setFinished(false);
             setLoading(false);
             setAlert(false);
@@ -112,7 +112,6 @@ const Activity = () => {
     const grantPermissions = async () => {
         try {
             if (typeof DeviceMotionEvent.requestPermission === 'function') {
-                // Dispositivo que requiere solicitud de permisos explícitos (iOS)
                 const response = await DeviceMotionEvent.requestPermission();
                 if (response === 'granted') {
                     enableMotionHandler();
@@ -120,7 +119,6 @@ const Activity = () => {
                     toast.error('Permiso denegado. No puedes participar en la actividad sin conceder acceso a los sensores.');
                 }
             } else {
-                // Dispositivo que no requiere permisos explícitos (Android, otros)
                 enableMotionHandler();
             }
         } catch (error) {
@@ -168,20 +166,16 @@ const Activity = () => {
             const data = {
                 ...user,
                 score: count,
-                mode: 1,
-                eventId: 1
+                mode: mode
             };
             const res = await register(data);
             console.log(res);
             setLoading(false);
             navigate('/wait');
             toast.success('Registro realizado con éxito.');
-            // Enviar datos a la API
         } catch (error) {
             setLoading(false);
             console.log(error);
-
-            // If error.response.data.message is not undefined or empty, show it
             if (error.response?.data?.message) {
                 toast.error(error.response.data.message);
                 localStorage.removeItem('user');
@@ -195,7 +189,7 @@ const Activity = () => {
 
     return (
         <div className='container mx-auto px-4 relative h-svh w-full flex flex-col justify-center items-center z-20'>
-            {exploding && <ConfettiExplosion colors={['#ff5f5f', '#cc9b4e']} onComplete={() => setExploding(false)} />}
+            {exploding && <ConfettiExplosion colors={['#D96ED7', '#cc9b4e']} onComplete={() => setExploding(false)} />}
             <AnimatePresence mode='wait'>
                 {alert && (
                     <motion.div
@@ -271,7 +265,7 @@ const Activity = () => {
                             ease: 'circInOut',
                             delay: 0.7
                         }}
-                        className='absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-transparent via-amber-400/45 to-transparent z-10' />
+                        className='absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-transparent via-purple-400/45 to-transparent z-10' />
                     <div className='flex flex-col justify-center items-center w-full max-w-md h-auto my-8 z-20'>
                         <motion.img
                             animate={{

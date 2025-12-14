@@ -2,16 +2,16 @@ import { useState } from 'react';
 import { motion, useAnimationControls, AnimatePresence } from 'framer-motion';
 import ConfettiExplosion from 'react-confetti-explosion';
 import { useEffect } from 'react'
-const mode = import.meta.env.MODE;
 import { results } from '../../api/endpoints';
 import { toast } from 'sonner';
+const mode = import.meta.env.MODE === 'development' ? 0 : 1;
 
 const Activity = ({ setBackground }) => {
     const controls = useAnimationControls();
     const [exploding, setExploding] = useState(false);
     const [resultsData, setResultsData] = useState([]);
     const [loading, setLoading] = useState(false);
-
+    
     useEffect(() => {
         setBackground(false)
     }, []);
@@ -34,7 +34,6 @@ const Activity = ({ setBackground }) => {
     };
 
     useEffect(() => {
-        // Randomize the time the pinata will beat between 2 and 3 seconds
         const randomTime = Math.floor(Math.random() * (3000 - 2000) + 2000);
         const interval = setInterval(() => {
             animationBeat();
@@ -46,9 +45,14 @@ const Activity = ({ setBackground }) => {
     const handleResults = async () => {
         try {
             setLoading(true);
-            const response = await results(1, 1);
-            setResultsData(response.data.users);
-            console.log(response.data.users);
+            const response = await results(mode);
+            if (response.status === 204) {
+                toast('Aún no tenemos a los 33 ganadores ¡Sigan rompiendo la piñata!');
+                setLoading(false)
+                return;
+            }
+            setResultsData(response.data.winnersSnapshot.winners);
+            console.log(response.data.winnersSnapshot.winners);
             setLoading(false);
         } catch (error) {
             setLoading(false);
@@ -64,7 +68,7 @@ const Activity = ({ setBackground }) => {
     return (
         <>
             <div className='container mx-auto px-4 relative h-svh w-full flex flex-col justify-center items-center z-40'>
-                {exploding && <ConfettiExplosion colors={['#ff5f5f', '#cc9b4e']} onComplete={() => setExploding(false)} />}
+                {exploding && <ConfettiExplosion colors={['#D96ED7', '#cc9b4e']} onComplete={() => setExploding(false)} />}
                 <div className='flex flex-col justify-center items-center w-full h-full z-20'>
                     <AnimatePresence mode='wait'>
                         {resultsData.length === 0 ? (
@@ -117,33 +121,70 @@ const Activity = ({ setBackground }) => {
                                     />
                                 </div>
                                 <div className='flex flex-[2] flex-col justify-center items-center w-full h-full pt-32'>
-                                    <div className='w-full h-[calc(100vh-5.75rem)] sticky top-16 overflow-y-scroll overscroll-contain'>
-                                        {resultsData.map((result, index) => (
-                                            <motion.div
-                                                key={index}
-                                                initial={{
-                                                    scale: 0,
-                                                    opacity: 0
-                                                }}
-                                                animate={{
-                                                    scale: 1,
-                                                    opacity: 1
-                                                }}
-                                                exit={{
-                                                    scale: 0,
-                                                    opacity: 0
-                                                }}
-                                                transition={{
-                                                    duration: 0.5,
-                                                    ease: 'easeInOut',
-                                                    delay: index * 0.1
-                                                }}
-                                                className='flex flex-row justify-between items-center w-full h-auto border-b-1 border-b-white/30 mb-10 text-xl'
-                                            >
-                                                <p className='text-white/90 font-semibold text-left flex-[2]'>{result.name} {result.lastname}</p>
-                                                <p className='text-white/90 font-semibold text-right flex-[4]'>{result.score}</p>
-                                            </motion.div>
-                                        ))}
+                                    <div className='w-full h-[calc(100vh-5.75rem)] sticky top-16 overflow-y-scroll overscroll-contain pr-2 space-y-6'>
+                                        {resultsData.map((result, index) => {
+                                            const { prizeSnapshot = {} } = result || {};
+                                            const {
+                                                rank: prizeRank,
+                                                hotel,
+                                                noches,
+                                                descripcion
+                                            } = prizeSnapshot;
+                                            const rankToShow = prizeRank ?? result.rank;
+                                            const fullName = `${result.name || ''} ${result.lastname || ''}`.trim();
+
+                                            return (
+                                                <motion.div
+                                                    key={index}
+                                                    initial={{
+                                                        scale: 0,
+                                                        opacity: 0
+                                                    }}
+                                                    animate={{
+                                                        scale: 1,
+                                                        opacity: 1
+                                                    }}
+                                                    exit={{
+                                                        scale: 0,
+                                                        opacity: 0
+                                                    }}
+                                                    transition={{
+                                                        duration: 0.5,
+                                                        ease: 'easeInOut',
+                                                        delay: index * 0.1
+                                                    }}
+                                                    className='relative w-full h-auto overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_25px_80px_-40px_rgba(0,0,0,0.35)] backdrop-blur'
+                                                >
+                                                    <div className='pointer-events-none absolute inset-0 bg-gradient-to-r from-amber-500/10 via-transparent to-purple-500/10 opacity-70' />
+                                                    <div className='relative flex items-start justify-between gap-4'>
+                                                        <div className='flex flex-col gap-1'>
+                                                            <p className='text-lg uppercase tracking-[0.14em] text-white/60'>Rank #{rankToShow ?? '-'}</p>
+                                                            <h3 className='text-2xl font-black leading-tight text-white'>{fullName || 'Nombre no disponible'}</h3>
+                                                        </div>
+                                                        <div className='text-right'>
+                                                            <p className='text-lg uppercase tracking-[0.14em] text-white/60'>Puntaje</p>
+                                                            <p className='text-3xl font-black text-amber-300 drop-shadow-[0_6px_18px_rgba(255,191,72,0.45)]'>{result.score ?? '-'}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className='relative mt-5 grid grid-cols-1 gap-4 text-sm text-white/80'>
+                                                        <div className='flex flex-col gap-1'>
+                                                            <span className='text-lg uppercase tracking-[0.14em] text-white/60'>Hotel</span>
+                                                            <p className='text-xl font-semibold leading-snug text-white/90'>{hotel || 'Por definir'}</p>
+                                                        </div>
+                                                        <div className='flex items-center gap-3'>
+                                                            <span className='text-lg uppercase tracking-[0.14em] text-white/60'>Noches</span>
+                                                            <span className='inline-flex items-center rounded-full border border-white/10 bg-white/10 px-3 py-1 text-base font-semibold text-white'>
+                                                                {noches ? `${noches} noche${noches === 1 ? '' : 's'}` : '-'}
+                                                            </span>
+                                                        </div>
+                                                        <div className='flex flex-col gap-1'>
+                                                            <span className='text-lg uppercase tracking-[0.14em] text-white/60'>Descripción</span>
+                                                            <p className='text-xl leading-relaxed text-white/90'>{descripcion || 'Sin descripción'}</p>
+                                                        </div>
+                                                    </div>
+                                                </motion.div>
+                                            )
+                                        })}
                                     </div>
                                 </div>
                             </div>
