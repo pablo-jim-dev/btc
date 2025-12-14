@@ -188,7 +188,7 @@ const Activity = () => {
     }
 
     return (
-        <div className='container mx-auto px-4 relative h-svh w-full flex flex-col justify-center items-center z-20'>
+        <div className='container mx-auto px-4 relative h-dvh w-full flex flex-col justify-center items-center z-20'>
             {exploding && <ConfettiExplosion colors={['#D96ED7', '#cc9b4e']} onComplete={() => setExploding(false)} />}
             <AnimatePresence mode='wait'>
                 {alert && (

@@ -6,7 +6,7 @@ const Home = ({
 }) => {
     return (
         <>
-            <div className='container mx-auto px-4 relative h-svh w-full flex flex-col justify-center items-center z-40'>
+            <div className='container mx-auto px-4 relative h-dvh w-full flex flex-col justify-center items-center z-40'>
                 <div className='flex flex-col justify-center items-center w-full h-full z-20'>
                     <motion.p
                         animate={{

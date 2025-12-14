@@ -5,7 +5,7 @@ import { Outlet } from 'react-router'
 const Background = () => {
   const [background, setBackground] = useState(true)
   return (
-    <div className='w-full h-svh bg-black bg-[url("/bg-mobile.png")] bg-cover bg-no-repeat bg-center md:bg-[url("/bg-desktop.png")] '>
+    <div className='w-full h-dvh bg-black bg-[url("/bg-mobile.png")] bg-cover bg-no-repeat bg-center md:bg-[url("/bg-desktop.png")] '>
       <motion.div
         style={{ display: background ? 'flex' : 'none' }}
         initial={{

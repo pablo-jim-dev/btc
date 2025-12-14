@@ -89,24 +89,27 @@ const Activity = ({ setBackground }) => {
                                 className='flex flex-col justify-center items-center w-full h-full'
                             >
                                 <motion.div
-                                    className='fixed'
+                                    className='fixed origin-top'
+                                    style={{ transformOrigin: '50% 0%' }}
                                     animate={{
-                                        translateX: ['-30%', '0%', '30%'],
-                                        translateY: ['-23%', '5%', '-23%'],
-                                        rotate: [16, 0, -16]
+                                        translateX: ['-18%', '12%', '-22%', '18%', '-10%', '14%', '-20%'],
+                                        translateY: ['-18%', '-10%', '-22%', '-12%', '-15%', '-11%', '-19%'],
+                                        rotate: [16, -11, 18, -13, 10, -9, 15],
+                                        skewX: [1.2, -0.8, 1.5, -1, 0.7, -0.5, 1.1]
                                     }}
                                     transition={{
                                         repeat: Infinity,
-                                        repeatType: 'mirror',
-                                        duration: 1.9,
-                                        ease: [0.42, 0, 0.58, 1]
+                                        duration: 7.4,
+                                        ease: 'easeInOut',
+                                        repeatDelay: 0.35,
+                                        times: [0, 0.12, 0.34, 0.56, 0.7, 0.88, 1]
                                     }}
                                 >
                                     <motion.img
                                         animate={controls}
                                         src='/pinata.png'
                                         alt='pinata'
-                                        className='h-auto w-full'
+                                        className='h-auto w-4/6'
                                     />
                                 </motion.div>
                             </motion.div>
