@@ -10,13 +10,13 @@ import { register } from '../api/endpoints';
 const mode = import.meta.env.MODE === 'development' ? 0 : 1;
 
 const Activity = () => {
-    const [count, setCount] = useState(200);
+    const [count, setCount] = useState(0);
     const [granted, setGranted] = useState(false);
     const { setBackground } = useOutletContext();
     const controls = useAnimationControls();
     const [exploding, setExploding] = useState(false);
     const inactivityTimer = useRef(null);
-    const [timeLeft, setTimeLeft] = useState(10);
+    const [timeLeft, setTimeLeft] = useState(90);
     const [finished, setFinished] = useState(false);
     const lastMultipleRef = useRef(0);
     const motionHandlerRef = useRef(null);
@@ -30,8 +30,8 @@ const Activity = () => {
         return () => {
             setBackground(true);
             setGranted(false);
-            setCount(200);
-            setTimeLeft(10);
+            setCount(0);
+            setTimeLeft(90);
             setFinished(false);
             setLoading(false);
             setAlert(false);
