@@ -280,6 +280,19 @@ const Activity = () => {
                             alt='game-over'
                             className='h-auto w-full'
                         />
+                        <motion.img
+                            animate={{
+                                scale: [0, 1],
+                            }}
+                            transition={{
+                                duration: 0.5,
+                                ease: 'circInOut',
+                                delay: 1.0
+                            }}
+                            src='/break.png'
+                            alt='game-over'
+                            className='h-auto w-2/3'
+                        />
                         <motion.div
                             animate={{
                                 scale: [0, 1],
