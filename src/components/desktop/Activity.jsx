@@ -46,7 +46,9 @@ const Activity = ({ setBackground }) => {
         try {
             setLoading(true);
             const response = await results(mode);
-            if (response.status === 204) {
+            console.log(response);
+            
+            if (response.status !== 200) {
                 if (response.data.message !== null || response.data.message !== undefined) {
                     toast(response.data.message);
                 } else {
