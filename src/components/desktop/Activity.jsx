@@ -47,7 +47,11 @@ const Activity = ({ setBackground }) => {
             setLoading(true);
             const response = await results(mode);
             if (response.status === 204) {
-                toast('Aún no tenemos a los 33 ganadores ¡Sigan rompiendo la piñata!');
+                if (response.data.message !== null || response.data.message !== undefined) {
+                    toast(response.data.message);
+                } else {
+                    toast('Aún no tenemos a los ganadores ¡Sigan rompiendo la piñata!')
+                }
                 setLoading(false)
                 return;
             }
