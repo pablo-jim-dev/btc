@@ -2,6 +2,7 @@ import { deleteUsers } from '../api/endpoints';
 import { useNavigate } from 'react-router';
 import { isMobile } from "react-device-detect";
 import { toast } from 'sonner';
+const VITE_API_URL = import.meta.env.VITE_ADMIN_PASSWORD;
 
 const Header = () => {
     const navigate = useNavigate();
@@ -30,7 +31,7 @@ const Header = () => {
 
             if (!confirmed) return;
 
-            await deleteUsers('7RuA');
+            await deleteUsers(VITE_API_URL);
             toast.success('Actividad reiniciada correctamente');
             navigate('/');
         } catch (error) {
