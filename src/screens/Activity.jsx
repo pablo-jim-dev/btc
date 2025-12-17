@@ -16,7 +16,7 @@ const Activity = () => {
     const controls = useAnimationControls();
     const [exploding, setExploding] = useState(false);
     const inactivityTimer = useRef(null);
-    const [timeLeft, setTimeLeft] = useState(20);
+    const [timeLeft, setTimeLeft] = useState(10);
     const [finished, setFinished] = useState(false);
     const lastMultipleRef = useRef(0);
     const motionHandlerRef = useRef(null);
@@ -31,7 +31,7 @@ const Activity = () => {
             setBackground(true);
             setGranted(false);
             setCount(200);
-            setTimeLeft(20);
+            setTimeLeft(10);
             setFinished(false);
             setLoading(false);
             setAlert(false);

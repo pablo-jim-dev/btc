@@ -11,7 +11,7 @@ const Activity = ({ setBackground }) => {
     const [exploding, setExploding] = useState(false);
     const [resultsData, setResultsData] = useState([]);
     const [loading, setLoading] = useState(false);
-    
+
     useEffect(() => {
         setBackground(false)
     }, []);
@@ -47,7 +47,7 @@ const Activity = ({ setBackground }) => {
             setLoading(true);
             const response = await results(mode);
             console.log(response);
-            
+
             if (response.status !== 200) {
                 if (response.data.message !== null || response.data.message !== undefined) {
                     toast(response.data.message);
@@ -121,13 +121,16 @@ const Activity = ({ setBackground }) => {
                             </motion.div>
                         ) : (
                             // Display the results with animation for each result
-                            <div className='flex flex-row justify-between items-center w-full h-screen relative'>
-                                <div className='flex flex-1 flex-row justify-start items-center w-full h-full'>
+                            <div className='flex flex-row justify-between items-center w-full h-screen relative gap-6'>
+                                <div className='flex flex-1 flex-col justify-start items-center w-full h-full'>
                                     <img
                                         src='/pinata.png'
                                         alt='pinata'
                                         className='h-auto w-3/4 rotate-12'
                                     />
+                                    <div className='relative w-full h-auto overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_25px_80px_-40px_rgba(0,0,0,0.85)] backdrop-blur'>
+                                        <p className='text-white font-bold text-2xl'>*Todos los premios/certificados incluyen: Hospedaje en habitaciones doble y 1 boleto de avión redondo categoría turista.</p>
+                                    </div>
                                 </div>
                                 <div className='flex flex-[2] flex-col justify-center items-center w-full h-full pt-32'>
                                     <div className='w-full h-[calc(100vh-5.75rem)] sticky top-16 overflow-y-scroll overscroll-contain pr-2 space-y-6'>
@@ -225,7 +228,7 @@ const Activity = ({ setBackground }) => {
                                 }}
                                 className='w-full h-auto' type='submit'
                                 style={{ pointerEvents: loading ? 'none' : 'auto', opacity: loading ? 0.5 : 1 }}
-                                >
+                            >
                                 <img src='/desktop/results.png' alt='arrow' className='w-full inline-block max-w-xl' />
                             </motion.button>
                         </motion.div>

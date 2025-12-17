@@ -8,6 +8,7 @@ import Activity from './screens/Activity'
 import Wait from "./screens/Wait";
 import Background from "./components/Background";
 import Results from "./screens/Results";
+import Delete from "./screens/Delete";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             path="/results"
             element={isMobile ? <Navigate to="/" replace /> : <Results />}
           />
+          <Route path="/delete" element={<Delete />} />
         </Route>
       </Routes>
       <Toaster
